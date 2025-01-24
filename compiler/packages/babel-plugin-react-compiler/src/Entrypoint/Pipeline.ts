@@ -99,6 +99,7 @@ import {propagateScopeDependenciesHIR} from '../HIR/PropagateScopeDependenciesHI
 import {outlineJSX} from '../Optimization/OutlineJsx';
 import {optimizePropsMethodCalls} from '../Optimization/OptimizePropsMethodCalls';
 import {transformFire} from '../Transform';
+import {convertIfToTernary} from '../Optimization/ConvertIfToTernary';
 
 export type CompilerPipelineValue =
   | {kind: 'ast'; name: string; value: CodegenFunction}
@@ -185,6 +186,9 @@ function runWithEnvironment(
 
   eliminateRedundantPhi(hir);
   log({kind: 'hir', name: 'EliminateRedundantPhi', value: hir});
+
+  convertIfToTernary(hir);
+  log({kind: 'hir', name: 'ConvertIfToTernary', value: hir});
 
   assertConsistentIdentifiers(hir);
 
