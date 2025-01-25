@@ -3,9 +3,12 @@
 
 ```javascript
 function foo() {
-  const cond = Math.random();
   let result;
-  result = cond ? 'hi' : 'foo';
+  if (cond) {
+    result = 'hi';
+  } else {
+    result = 'foo';
+  }
   return result;
 }
 
@@ -21,7 +24,6 @@ export const FIXTURE_ENTRYPOINT = {
 
 ```javascript
 function foo() {
-  const cond = Math.random();
   let result;
   result = cond ? "hi" : "foo";
   return result;
@@ -36,4 +38,4 @@ export const FIXTURE_ENTRYPOINT = {
 ```
       
 ### Eval output
-(kind: ok) "hi"
+(kind: exception) cond is not defined
